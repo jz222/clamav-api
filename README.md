@@ -58,7 +58,7 @@ curl --form file='@example.pdf' http://localhost:8080/scan
    "success": true,
    "data": {
       "isMalicious": false,
-      "result": "/root/uploads/121736192-Untitled.txt: OK\n\n----------- SCAN SUMMARY -----------\nKnown viruses: 8608180\nEngine version: 0.104.2\nScanned directories: 0\nScanned files: 1\nInfected files: 0\nData scanned: 0.27 MB\nData read: 0.13 MB (ratio 2.12:1)\nTime: 23.505 sec (0 m 23 s)\nStart Date: 2022:03:16 22:20:51\nEnd Date:   2022:03:16 22:21:14\n"
+      "result": "/root/uploads/121736192-example.txt: OK\n\n----------- SCAN SUMMARY -----------\nKnown viruses: 8608180\nEngine version: 0.104.2\nScanned directories: 0\nScanned files: 1\nInfected files: 0\nData scanned: 0.27 MB\nData read: 0.13 MB (ratio 2.12:1)\nTime: 23.505 sec (0 m 23 s)\nStart Date: 2022:03:16 22:20:51\nEnd Date:   2022:03:16 22:21:14\n"
    }
 }
 ```
