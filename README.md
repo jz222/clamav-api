@@ -1,6 +1,6 @@
 # ClamAV API
 
-A stateless Go server utilizing ClamAV to scan files sent by HTTP request. The server responds with the scan results. It can for example be used as microservice to detect malicious files uploaded by users. The Docker container is based on the [official ClamAV Docker image](https://github.com/Cisco-Talos/clamav).
+A stateless Go server utilizing ClamAV to scan files sent by HTTP request. The server responds with the scan results. It can for example be used as microservice to detect malicious files uploaded by users. The Docker image is based on the [official ClamAV Docker image](https://github.com/Cisco-Talos/clamav).
 
 ## Local Setup
 
