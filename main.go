@@ -96,7 +96,9 @@ func scanFile(fileName string) (bool, string, string, error) {
 		}
 
 		if err != nil {
-			return false, stdErr.String(), "", err
+			err = errors.New("failed to scan file with error: " + err.Error() + " " + stdErr.String())
+			log.Println(err.Error())
+			return false, err.Error(), "", err
 		}
 
 		return false, stdOut.String(), "", nil
