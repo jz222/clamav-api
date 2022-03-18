@@ -5,7 +5,6 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -57,8 +56,22 @@ func respondWithError(w http.ResponseWriter, message string, status int) {
 	json.NewEncoder(w).Encode(res)
 }
 
+func startDaemon() error {
+	cmd := exec.Command("clamd")
+
+	var stdErr bytes.Buffer
+	cmd.Stderr = &stdErr
+
+	_, err := cmd.Output()
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func scanFile(fileName string) (bool, string, string, error) {
-	cmd := exec.Command("clamscan", fileName)
+	cmd := exec.Command("clamdscan", "--fdpass", fileName)
 
 	var stdOut bytes.Buffer
 	cmd.Stdout = &stdOut
@@ -164,8 +177,15 @@ func main() {
 		MaxHeaderBytes: 0,
 	}
 
+	log.Println("starting daemon")
+	err := startDaemon()
+	if err != nil {
+		log.Fatal("failed to start daemon with error: " + err.Error())
+	}
+	log.Println("daemon started successfully")
+
 	go func() {
-		fmt.Println("Server listening on port " + PORT)
+		log.Println("Server listening on port " + PORT)
 		err := s.ListenAndServe()
 		if err != nil {
 			log.Println(err.Error())
@@ -180,7 +200,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	err := s.Shutdown(ctx)
+	err = s.Shutdown(ctx)
 	if err != nil {
 		log.Fatal("failed to stop server with error: ", err.Error())
 	}

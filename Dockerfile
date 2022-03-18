@@ -1,6 +1,7 @@
 FROM clamav/clamav
 
 RUN mkdir ~/uploads
+RUN mkdir run/lock
 
 RUN freshclam
 

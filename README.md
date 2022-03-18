@@ -36,7 +36,7 @@ docker run -it -p 8080:8080 clamav-api
 If you don't want to build the image locally, you can pull it directly from Docker Hub by running:
 
 ```
-docker run -it -p 8080:8080 jz222/clamav-api:2.0.1
+docker run -it -p 8080:8080 jz222/clamav-api:2.0.2
 ```
 
 ## Updates
